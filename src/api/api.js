@@ -3,35 +3,35 @@ const cheerio = require('cheerio');
 const url = require('./urls');
 
 
-//I need to verify how to load data faster
 const ongoingSeries = async() =>{
   const res = await fetch(`${url.BASE_URL}`);
   const body = await res.text();
   const $ = cheerio.load(body);
   const promises = [];
 
-  $('div.main_body div.series nav.menu_series ul li').each((index , element) =>{
-    const $element = $(element);
-    const id = $element.find('a').attr('href');
-    const title = $element.find('a').text(); 
-    promises.push(animeContentHandler(id).then(extra =>({
-      title: title ? title : null,                   
-      img: extra[0] ? extra[0].img : null,
-      synopsis: extra[0] ? extra[0].synopsis : null,
-      genres: extra[0] ? extra[0].genres : null,
-      released: extra[0] ? extra[0].released : null,
-      status: extra[0] ? extra[0].status : null,
-      otherName: extra[0] ? extra[0].otherName : null,
-      totalEpisodes: extra[0] ? extra[0].totalEpisodes : null,
-      episodes: extra[0] ? extra[0].episodes: null
-    })));
+  Array.from({length: 30} , (v , k) =>{
+    $('div.main_body div.series nav.menu_series ul li').eq(k + 1).each((index , element) =>{
+      const $element = $(element);
+      const id = $element.find('a').attr('href');
+      const title = $element.find('a').text(); 
+      promises.push(animeContentHandler(id).then(extra =>({
+        title: title ? title : null,                   
+        img: extra[0] ? extra[0].img : null,
+        synopsis: extra[0] ? extra[0].synopsis : null,
+        genres: extra[0] ? extra[0].genres : null,
+        released: extra[0] ? extra[0].released : null,
+        status: extra[0] ? extra[0].status : null,
+        otherName: extra[0] ? extra[0].otherName : null,
+        totalEpisodes: extra[0] ? extra[0].totalEpisodes : null,
+        episodes: extra[0] ? extra[0].episodes: null
+      })));
+    })
   });
   return await Promise.all(promises);
 };
 
 const search = async(query) =>{
-  if(!query.length) return null;
-  const res = await fetch(`${url.BASE_URL}//search.html?keyword=${query}`);
+  const res = await fetch(`${url.BASE_URL}/search.html?keyword=${query}`);
   const body = await res.text();
   const $ = cheerio.load(body);
   const promises = [];
@@ -55,24 +55,6 @@ const search = async(query) =>{
   return await Promise.all(promises);
 };
 
-
-// action , adventure
-// cars , comedy
-// dementia , demons , drama , dub
-// ecchi
-// fantasy
-// game
-// harem , historical , horror
-// josei
-// kids
-// magic , martial-arts , mecha , military , music , mystery
-// parody , police , psychological
-// romance
-// samurai , school , sci-fi , seinen , shoujo , shoujo-ai , shounen , shounen-ai , slice-of-life , space , sports , super-power
-// supernatural
-// thriller
-// vampire
-// yaoi , yuri
 const genres = async(genre , page) =>{
   const res = await fetch(`${url.BASE_URL}/genre/${genre}?page=${page}`);
   const body = await res.text();
@@ -98,32 +80,6 @@ const genres = async(genre , page) =>{
   return await Promise.all(promises);
 };
 
-// letter = '0' (zero value means , numbers in the title) page limit [1 .. 53]
-// letter = 'A' page limit [1 .. 4]
-// letter = 'C' page limit [1 .. 3]
-// letter = 'D' page limit [1 .. 4]
-// letter = 'E' page limit [1 .. 1]
-// letter = 'F' page limit [1 .. 2]
-// letter = 'G' page limit [1 .. 3]
-// letter = 'H' page limit [1 .. 4]
-// letter = 'I' page limit [1 .. 2]
-// letter = 'J' page limit [1 .. 1]
-// letter = 'K' page limit [1 .. 4]
-// letter = 'L' page limit [1 .. 2]
-// letter = 'M' page limit [1 .. 4]
-// letter = 'N' page limit [1 .. 2]
-// letter = 'O' page limit [1 .. 2]
-// letter = 'P' page limit [1 .. 1]
-// letter = 'Q' page limit [1 .. 1]
-// letter = 'R' page limit [1 .. 2]
-// letter = 'S' page limit [1 .. 6]
-// letter = 'T' page limit [1 .. 4]
-// letter = 'U' page limit [1 .. 1]
-// letter = 'V' page limit [1 .. 1]
-// letter = 'W' page limit [1 .. 1]
-// letter = 'Z' page limit [1 .. 1]
-// letter = 'Y' page limit [1 .. 2]
-// letter = 'Z' page limit [1 .. 1]
 const alphabetList = async(letter , page) =>{
   const res = await fetch(`${url.BASE_URL}/anime-list-${letter}?page=${page}`)
   const body = await res.text();
@@ -149,7 +105,6 @@ const alphabetList = async(letter , page) =>{
   return await Promise.all(promises);
 };
 
-// page limit = [1 .. 4]
 const newSeasons = async(page) =>{
   const res = await fetch(`${url.BASE_URL}/new-season.html?page=${page}`)
   const body = await res.text();
@@ -175,7 +130,6 @@ const newSeasons = async(page) =>{
   return await Promise.all(promises);
 };
 
-//page limit = [1 .. 64]
 const movies = async(page) =>{
   const res = await fetch(`${url.BASE_URL}/anime-movies.html?page=${page}`);
   const body = await res.text();
@@ -201,7 +155,6 @@ const movies = async(page) =>{
   return await Promise.all(promises);
 };
 
-//page limit = [1 .. 354]
 const popular = async(page) =>{
   const res = await fetch(`${url.BASE_URL}/popular.html?page=${page}`);
   const body = await res.text();
@@ -252,7 +205,6 @@ const recentlyAddedSeries = async() =>{
   return await Promise.all(promises);
 };
 
-//page limit = [1 .. 257]
 const recentReleaseEpisodes = async(page) =>{
   const res = await fetch(`${url.BASE_URL}/?page=${page}`);
   const body = await res.text();
