@@ -13,6 +13,7 @@
 <img src="https://img.shields.io/badge/gogoanime-API-brightgreen.svg" alt="">
 <img src="https://img.shields.io/github/stars/ChrisMichaelPerezSantiago/gogoanime?style=social" alt="">
          
+ <a href="https://nodei.co/npm/gogoanime/"><img src="https://nodei.co/npm/gogoanime.png"></a>
 
 
          
