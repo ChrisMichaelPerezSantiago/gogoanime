@@ -8,10 +8,11 @@
 <a href="https://github.com/ChrisMichaelPerezSantiago/gogoanime/blob/master/LICENSE">
   <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" target="_blank" />
 </a>
+<img src="https://img.shields.io/badge/now.sh-deployed-brightgreen.svg" alt="">
+<img src="https://badgen.net/badge/icon/now?icon=now&label" alt="">
 <img src="https://img.shields.io/badge/gogoanime-API-brightgreen.svg" alt="">
 <img src="https://img.shields.io/github/stars/ChrisMichaelPerezSantiago/gogoanime?style=social" alt="">
-
-<a href="https://nodei.co/npm/gogoanime/"><img src="https://nodei.co/npm/gogoanime.png"></a>
+         
 
 
          
