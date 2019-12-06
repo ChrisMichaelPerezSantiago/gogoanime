@@ -22,6 +22,15 @@
 ---
 
 
+## :tada: Updates in version v1.0.0 :tada:
+- [x] *API documentation finished.*
+- [x] *gogoanime npm package available for use.*
+- [x] *API available from the web*
+
+
+## :rocket: Custom gogoanime API Link
+[gogoanime api](https://gogoanime.now.sh/api/v1/)
+
 ### **Installation**
 
 In order to install the project and all dependencies, enter in the project folder and run `npm install`
