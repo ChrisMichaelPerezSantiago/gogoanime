@@ -2,9 +2,9 @@ const express = require('express');
 const router = express.Router();
 const api = require('../api');
 
-// fix - Problems in obtaining data in the route
+
 router.get('/Search/:query' , (req , res) =>{
-  const query = req.query.query;
+  const query = req.params.query;
   api.search(query)
     .then(search =>{
       res.status(200).json({
@@ -42,7 +42,6 @@ router.get('/RecentlyAddedSeries' , (req , res) =>{
     })
 });
 
-//fix - speed
 router.get('/OngoingSeries' , (req , res) =>{
   api.ongoingSeries()
     .then(anime =>{
@@ -52,7 +51,6 @@ router.get('/OngoingSeries' , (req , res) =>{
     })
 });
 
-//fix - speed
 router.get('/Alphabet/:letter/:page' , (req , res) =>{
   const letter = req.params.letter.toUpperCase();
   const page = parseInt(req.params.page , 10);
