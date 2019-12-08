@@ -4,7 +4,7 @@ const router = express.Router();
 
 router.get('/', (req, res) => {
   res.json({
-    message: 'animeflv API - 👋🌎🌍🌏',
+    message: 'gogoanime API - 👋🌎🌍🌏',
     entries: [
       {
         "Search": "/api/v1/Search/:query",
