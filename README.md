@@ -1,31 +1,31 @@
-# **:triangular_flag_on_post: GOGOANIME API** (version 1.0.0)
+<p align="center">
+Gogoanime is a custom API that provides data from the `10.gogoanime.io` website. You will have access to the entire catalog whether movies, series, current episodes, etc., with English subtitles.
+</p>
 
-![node version](https://img.shields.io/badge/node->=10.16.x-brightgreen.svg)
-![npm version](https://img.shields.io/badge/npm->=6.9.x-brightgreen.svg)
-<a href="https://github.com/ChrisMichaelPerezSantiago/gogoanime/graphs/commit-activity">
-  <img alt="Maintenance" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" target="_blank" />
-</a>
-<a href="https://github.com/ChrisMichaelPerezSantiago/gogoanime/blob/master/LICENSE">
-  <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" target="_blank" />
-</a>
-<img src="https://img.shields.io/badge/now.sh-deployed-brightgreen.svg" alt="">
-<img src="https://badgen.net/badge/icon/now?icon=now&label" alt="">
-<img src="https://img.shields.io/badge/gogoanime-API-brightgreen.svg" alt="">
-<img src="https://img.shields.io/github/stars/ChrisMichaelPerezSantiago/gogoanime?style=social" alt="">
-         
+
+<p align="center">
+  <img src="https://img.shields.io/badge/node->=10.16.x-brightgreen.svg" />
+  <img src="https://img.shields.io/badge/npm->=6.9.x-brightgreen.svg" />
+  <a href="https://github.com/ChrisMichaelPerezSantiago/gogoanime/graphs/commit-activity">
+    <img alt="Maintenance" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" target="_blank" />
+  </a>
+  <a href="https://github.com/ChrisMichaelPerezSantiago/gogoanime/blob/master/LICENSE">
+    <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" target="_blank" />
+  </a>
+  <img src="https://img.shields.io/badge/now.sh-deployed-brightgreen.svg" alt="">
+  <img src="https://badgen.net/badge/icon/now?icon=now&label" alt="">
+  <img src="https://img.shields.io/badge/gogoanime-API-brightgreen.svg" alt="">
+  <img src="https://img.shields.io/github/stars/ChrisMichaelPerezSantiago/gogoanime?style=social" alt="">
+</p>
+
+<p align="center">
  <a href="https://nodei.co/npm/gogoanime/"><img src="https://nodei.co/npm/gogoanime.png"></a>
+</p>
 
 
-         
->Gogoanime is a custom API that provides data from the `10.gogoanime.io` website. You will have access to the entire catalog whether movies, series, current episodes, etc., with English subtitles.
-
----
-
-
-## :tada: Updates in version v1.0.0 :tada:
-- [x] *API documentation finished.*
-- [x] *gogoanime npm package available for use.*
-- [x] *API available from the web*
+## :tada: Updates in version v1.0.1 :tada:
+- [x] *Iframe Decoder for vidstreaming*
+  - `decodeVidstreamingIframeURL([iframe_url])`
 
 
 ## :rocket: Custom gogoanime API Link
@@ -296,6 +296,34 @@ api.animeEpisodeHandler('actors-songs-connection-episode-9')
   ]
 }
 ```
+
+# Iframe Decoder for url vidstreaming
+*If you don't want to directly load the video iframe in your application, you can use the decoder.*
+
+## api.decodeVidstreamingIframeURL([iframe_url])
+*This decoder returns a list of videos type **mp4 or m3u8**. To play the **m3u8** videos you would have to use some **HLS player***
+
+```javascript
+  const iframe = 'vidstreaming.io/load.php?id=MTM0NTk1&title=Wan+Jie+Xian+Zong+2nd+Season+Episode+56';
+  await api.decodeVidstreamingIframeURL(iframe)
+    .then(urls =>{
+      console.log(urls)
+    });
+```
+
+```javascript
+[
+  {
+    option: 1,
+    url: 'https://hls12xx.cdnfile.info/hls/9296cf197ecfe26b540cd67afd84dfa9/sub.56.m3u8'
+  },
+  {
+    option: 2,
+    url: 'https://st1.cdnfile.info/user1342/9296cf197ecfe26b540cd67afd84dfa9/EP.56.fullp.mp4?token=VOJQfydPCH9VHwRDkrVWpg&expires=1588377949&id=134595'
+  }
+]
+```
+
 
 ## api.recentlyAddedSeries()
 ---
