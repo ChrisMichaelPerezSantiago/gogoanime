@@ -1,4 +1,5 @@
 const fetch = require('node-fetch');
+const cloudscraper = require('cloudscraper');
 const cheerio = require('cheerio');
 const url = require('./urls');
 
@@ -313,6 +314,42 @@ const animeContentHandler = async(id) =>{
   return await Promise.all(promises);
 };
 
+const decodeVidstreamingIframeURL = async(url) =>{
+  const _url = `https://${url}`;
+  let realUrl = "";
+  if(_url.includes('streaming')){
+    realUrl = _url.replace(/streaming/g , 'check').trim();
+    if(realUrl.includes('vidcheck.io')){
+      realUrl = _url.replace(/vidcheck.io/g , 'vidstreaming.io').trim();
+    }
+  }
+  if(_url.includes('load')){
+    realUrl = _url.replace(/load/g , 'check').trim();
+  }
+  if(_url.includes('server')){
+    realUrl = _url.replace(/server/g , 'check').trim();
+  }
+
+  const data = await cloudscraper(realUrl);
+  const match = /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)?/gi;
+  const _URLs = String(data).match(match)
+    .filter(url => url.includes('.mp4') || url.includes('m3u8'));
+
+  const URLs = [];
+  Array.from({length: _URLs.length} , (v , k) =>{
+    const option = k + 1;
+    let url  = _URLs[k];
+    if(!url.includes('https://')){
+      url = `https://${url}`
+    }
+    URLs.push({
+      option: option || null,
+      url: url || null
+    })
+  });
+  
+  return Promise.all(URLs);
+}
 
 module.exports = {
   animeEpisodeHandler,
@@ -324,5 +361,6 @@ module.exports = {
   movies,
   popular,
   search,
-  genres
+  genres,
+  decodeVidstreamingIframeURL
 }
