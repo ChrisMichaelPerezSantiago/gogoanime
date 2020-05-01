@@ -1,6 +1,6 @@
 {
   "name": "gogoanime",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Gogoanime is a custom API that provides data from the `10.gogoanime.io` website. You will have access to the entire catalog whether movies, series, current episodes, etc., with English subtitles.",
   "main": "./src/api/api.js",
   "scripts": {
@@ -19,16 +19,19 @@
   },
   "license": "MIT",
   "dependencies": {
-    "cheerio": "^1.0.0-rc.3",
-    "node-fetch": "^2.6.0",
-    "nodemon": "^2.0.1",
+    "axios": "^0.19.2",
     "body-parser": "^1.19.0",
+    "cheerio": "^1.0.0-rc.3",
+    "cloudscraper": "^4.6.0",
     "compose-middleware": "^5.0.1",
     "cors": "^2.8.5",
     "dotenv": "^6.2.0",
     "express": "^4.16.4",
     "helmet": "^3.15.0",
-    "morgan": "^1.9.1"
+    "morgan": "^1.9.1",
+    "node-fetch": "^2.6.0",
+    "nodemon": "^2.0.1",
+    "request": "^2.88.2"
   },
   "devDependencies": {
     "eslint": "^6.7.2",
