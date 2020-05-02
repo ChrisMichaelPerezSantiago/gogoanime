@@ -103,5 +103,16 @@ router.get('/Genre/:genre/:page' , (req , res) =>{
     })
 });
 
+router.get('/DecodeVidstreamingIframeURL/*' , (req , res) =>{
+  const url = req.originalUrl;
+  const urlParts = url.split('/');
+  const _url = `${urlParts[4].concat('/'+ urlParts[5])}`.trim();
+  api.decodeVidstreamingIframeURL(_url)
+    .then(videos =>{
+      res.status(200).json({
+        videos
+      });
+    })
+});
 
 module.exports = router;

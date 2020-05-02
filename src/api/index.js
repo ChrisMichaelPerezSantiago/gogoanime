@@ -16,7 +16,8 @@ router.get('/', (req, res) => {
         "NewSeasons": "/api/v1/NewSeasons/:page",
         "Movies": "/api/v1/Movies/:page",
         "Popular": "/api/v1/Popular/:page",
-        "Genre": "/api/v1/Genre/:genre/:page"
+        "Genre": "/api/v1/Genre/:genre/:page",
+        "DecodeVidstreamingIframeURL": "/api/v1/DecodeVidstreamingIframeURL"
       }
     ]
   });
