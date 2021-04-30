@@ -24,7 +24,7 @@ Gogoanime is a custom API that provides data from the `10.gogoanime.io` website.
 
 
 ## :tada: Updates in version v1.0.2 :tada:
-- [x] if an anime has a total number of episodes 100/200/300 it would show null in total Episodes
+- [x] Bug fixed, if an anime has a total number of episodes 100/200/300 it would show null in total Episodes
 
 ## :rocket: Custom gogoanime API Link
 API URL DOES NOT WORK
