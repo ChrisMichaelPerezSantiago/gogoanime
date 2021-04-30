@@ -1,6 +1,6 @@
 {
   "name": "gogoanime",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Gogoanime is a custom API that provides data from the `10.gogoanime.io` website. You will have access to the entire catalog whether movies, series, current episodes, etc., with English subtitles.",
   "main": "./src/api/api.js",
   "scripts": {
