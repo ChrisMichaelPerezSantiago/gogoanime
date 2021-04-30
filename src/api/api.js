@@ -293,7 +293,11 @@ const animeContentHandler = async(id) =>{
     const status = $element.find('div.anime_info_body_bg p.type').eq(4).text().replace('Status:' , '').trim();
     const otherName = $element.find('div.anime_info_body_bg p.type').eq(5).text().replace('Other name:' , '').trim();
     const liTotal = $('div.anime_video_body ul#episode_page li').length;
-    const totalEpisodes = parseInt($('div.anime_video_body ul#episode_page li').eq(liTotal - 1).find('a').text().split('-')[1] , 10);
+    var totalEpisodes = parseInt($('div.anime_video_body ul#episode_page li').eq(liTotal - 1).find('a').text().split('-')[1] , 10);
+    if(!totalEpisodes){
+       totalEpisodes = parseInt($('div.anime_video_body ul#episode_page li').eq(liTotal - 1).find('a').text() , 10);
+    }
+    
     const episodes = Array.from({length: totalEpisodes} , (v , k) =>{
       const animeId = `${id}-episode-${k + 1}`.slice(10);
       return{
