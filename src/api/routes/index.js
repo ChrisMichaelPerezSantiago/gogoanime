@@ -21,6 +21,11 @@ router.get('/AnimeEpisodeHandler/:id' , (req , res) =>{
         anime
       });
     })
+    .catch(() => {
+      res.status(404).json({
+        "error": "Episode Not Found"
+      });
+    })
 });
 
 router.get('/RecentReleaseEpisodes/:page' , (req , res) =>{

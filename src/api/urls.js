@@ -1,3 +1,6 @@
+const dotenv = require('dotenv');
+dotenv.config()
+
 module.exports = {
-  BASE_URL: 'https://www10.gogoanime.io',
+  BASE_URL: process.env.BASE_URL,
 };

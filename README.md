@@ -1,5 +1,5 @@
 <p align="center">
-Gogoanime is a custom API that provides data from the `10.gogoanime.io` website. You will have access to the entire catalog whether movies, series, current episodes, etc., with English subtitles.
+Gogoanime is a custom API that provides data from the `gogoanime` website. You will have access to the entire catalog whether movies, series, current episodes, etc., with English subtitles.
 </p>
 
 
@@ -23,8 +23,9 @@ Gogoanime is a custom API that provides data from the `10.gogoanime.io` website.
 </p>
 
 
-## :tada: Updates in version v1.0.2 :tada:
-- [x] Bug fixed, if an anime has a total number of episodes 100/200/300 it would show null in total Episodes
+## :tada: Updates in version v1.0.3 :tada:
+- [x] `animeEpisodeHandler` now handles invalid episode ids instead of crashing
+- [x] Can now pass the gogoanime website url via a .env file or via an environment variable.
 
 ## :rocket: Custom gogoanime API Link
 API URL DOES NOT WORK
@@ -33,6 +34,8 @@ API URL DOES NOT WORK
 
 
 ### **Installation**
+
+Define the current gogoanime website url in a `.env` file or as an environment variable. An example is provided in the `.env.example` file.
 
 In order to install the project and all dependencies, enter in the project folder and run `npm install`
 
@@ -906,3 +909,4 @@ _*Chris Michael*_
 ---
 
 Copyright © 2019 [Chris Michael](http://personal-porfolio.chrismichael.now.sh).
+
